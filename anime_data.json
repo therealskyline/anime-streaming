@@ -1,0 +1,277 @@
+{
+    "anime": [
+      {
+        "id": 1,
+        "title": "One Piece",
+        "description": "Monkey D. Luffy refuses to let anyone or anything stand in the way of his quest to become the king of all pirates. With a course charted for the treacherous waters of the Grand Line and beyond, this is the story of the greatest adventure of all time.",
+        "image_url": "https://m.media-amazon.com/images/M/MV5BODcwNWE3OTMtMDc3MS00NDFjLWE1OTAtNDU3NjgxODMxY2UyXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg",
+        "genres": ["Action", "Adventure", "Comedy", "Fantasy"],
+        "seasons": [
+          {
+            "number": 1,
+            "title": "East Blue Saga",
+            "episodes": [
+              {
+                "number": 1,
+                "title": "I'm Luffy! The Man Who's Gonna Be King of the Pirates!",
+                "description": "Monkey D. Luffy sets out on his adventure to find the One Piece and become the Pirate King. Along the way he meets a boy named Koby who wants to become a Marine.",
+                "video_url": "https://drive.google.com/file/d/1MXN72LKpkLUEr7jM8tOloBgIjxNyoxdj/view",
+                "duration": 24,
+                "views": 1500000
+              },
+              {
+                "number": 2,
+                "title": "Enter the Great Swordsman! Pirate Hunter Roronoa Zoro!",
+                "description": "Luffy arrives at a town where the feared pirate hunter Roronoa Zoro is being held prisoner.",
+                "video_url": "https://drive.google.com/file/d/1l1yGSBIZ2M4WDMM_PvUB8Rk5nLrVAuJu/view",
+                "duration": 24,
+                "views": 1250000
+              },
+              {
+                "number": 3,
+                "title": "Morgan versus Luffy! Who's the Mysterious Pretty Girl?",
+                "description": "Luffy and Zoro take on the tyrannical Marine captain Axe-Hand Morgan.",
+                "video_url": "https://drive.google.com/file/d/1l1yGSBIZ2M4WDMM_PvUB8Rk5nLrVAuJu/view",
+                "duration": 24,
+                "views": 1150000
+              }
+            ]
+          },
+          {
+            "number": 2,
+            "title": "Alabasta Saga",
+            "episodes": [
+              {
+                "number": 1,
+                "title": "Welcome to the Grand Line! The Twin Capes and the Giant Whale",
+                "description": "The crew finally reaches the Grand Line and encounters a whale named Laboon.",
+                "video_url": "https://drive.google.com/file/d/1l1yGSBIZ2M4WDMM_PvUB8Rk5nLrVAuJu/view",
+                "duration": 24,
+                "views": 1100000
+              },
+              {
+                "number": 2,
+                "title": "A Town That Welcomes Pirates? Setting Foot on Whisky Peak!",
+                "description": "The Straw Hats arrive at the first island of the Grand Line, Whisky Peak.",
+                "video_url": "https://drive.google.com/file/d/1l1yGSBIZ2M4WDMM_PvUB8Rk5nLrVAuJu/view",
+                "duration": 24,
+                "views": 1050000
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Naruto",
+        "description": "Naruto Uzumaki, a mischievous adolescent ninja, struggles as he searches for recognition and dreams of becoming the Hokage, the village's leader and strongest ninja.",
+        "image_url": "https://m.media-amazon.com/images/M/MV5BZmQ5NGFiNWEtMmMyMC00MDdiLTg4YjktOGY5Yzc2MDUxMTE1XkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_.jpg",
+        "genres": ["Action", "Adventure", "Comedy", "Super Power"],
+        "seasons": [
+          {
+            "number": 1,
+            "title": "Introduction Arc",
+            "episodes": [
+              {
+                "number": 1,
+                "title": "Enter: Naruto Uzumaki!",
+                "description": "Naruto Uzumaki, a troublemaking ninja-in-training, dreams of becoming the Hokage, the leader of his village.",
+                "video_url": "https://drive.google.com/file/d/1l1yGSBIZ2M4WDMM_PvUB8Rk5nLrVAuJu/view",
+                "duration": 23,
+                "views": 1800000
+              },
+              {
+                "number": 2,
+                "title": "My Name is Konohamaru!",
+                "description": "Naruto meets the Third Hokage's grandson Konohamaru, who wants to learn his sexy technique.",
+                "video_url": "https://drive.google.com/file/d/1l1yGSBIZ2M4WDMM_PvUB8Rk5nLrVAuJu/view",
+                "duration": 23,
+                "views": 1600000
+              }
+            ]
+          },
+          {
+            "number": 2,
+            "title": "Land of Waves Arc",
+            "episodes": [
+              {
+                "number": 1,
+                "title": "Sasuke and Sakura: Friends or Foes?",
+                "description": "Team 7 is put to a test by Kakashi Hatake to see if they are worthy of becoming Genin.",
+                "video_url": "https://drive.google.com/file/d/1l1yGSBIZ2M4WDMM_PvUB8Rk5nLrVAuJu/view",
+                "duration": 23,
+                "views": 1500000
+              },
+              {
+                "number": 2,
+                "title": "The Oath of Pain",
+                "description": "Team 7 continues their training to climb trees using only their feet.",
+                "video_url": "https://drive.google.com/file/d/1l1yGSBIZ2M4WDMM_PvUB8Rk5nLrVAuJu/view",
+                "duration": 23,
+                "views": 1400000
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Attack on Titan",
+        "description": "After his hometown is destroyed and his mother is killed, young Eren Jaeger vows to cleanse the earth of the giant humanoid Titans that have brought humanity to the brink of extinction.",
+        "image_url": "https://flxt.tmsimg.com/assets/p10701949_b_v8_ah.jpg",
+        "genres": ["Action", "Drama", "Fantasy", "Horror"],
+        "seasons": [
+          {
+            "number": 1,
+            "title": "Season 1",
+            "episodes": [
+              {
+                "number": 1,
+                "title": "To You, in 2000 Years: The Fall of Shiganshina, Part 1",
+                "description": "After 100 years of peace, the Titans have broken through Wall Maria and are invading the city of Shiganshina. Eren Jaeger witnesses the death of his mother at the hands of a Titan.",
+                "video_url": "https://drive.google.com/file/d/1l1yGSBIZ2M4WDMM_PvUB8Rk5nLrVAuJu/view",
+                "duration": 24,
+                "views": 2000000
+              },
+              {
+                "number": 2,
+                "title": "That Day: The Fall of Shiganshina, Part 2",
+                "description": "Eren, Mikasa, and Armin flee the city with other refugees. Years later, they begin their training to become soldiers.",
+                "video_url": "https://drive.google.com/file/d/1l1yGSBIZ2M4WDMM_PvUB8Rk5nLrVAuJu/view",
+                "duration": 24,
+                "views": 1900000
+              }
+            ]
+          },
+          {
+            "number": 2,
+            "title": "Season 2",
+            "episodes": [
+              {
+                "number": 1,
+                "title": "Beast Titan",
+                "description": "A new type of Titan appears, strange events unfold, and more mysteries are revealed.",
+                "video_url": "https://drive.google.com/file/d/1l1yGSBIZ2M4WDMM_PvUB8Rk5nLrVAuJu/view",
+                "duration": 24,
+                "views": 1850000
+              },
+              {
+                "number": 2,
+                "title": "I'm Home",
+                "description": "Sasha returns to her hometown to warn them of an impending Titan attack.",
+                "video_url": "https://drive.google.com/file/d/1l1yGSBIZ2M4WDMM_PvUB8Rk5nLrVAuJu/view",
+                "duration": 24,
+                "views": 1800000
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Demon Slayer",
+        "description": "A family is attacked by demons and only two members survive - Tanjiro and his sister Nezuko, who is turning into a demon slowly. Tanjiro sets out to become a demon slayer to avenge his family and cure his sister.",
+        "image_url": "https://m.media-amazon.com/images/M/MV5BZjZjNzI5MDctY2Y4YS00NmM4LTljMmItZTFkOTExNGI3ODRhXkEyXkFqcGdeQXVyNjc3MjQzNTI@._V1_.jpg",
+        "genres": ["Action", "Fantasy", "Adventure", "Supernatural"],
+        "seasons": [
+          {
+            "number": 1,
+            "title": "Unwavering Resolve Arc",
+            "episodes": [
+              {
+                "number": 1,
+                "title": "Cruelty",
+                "description": "Tanjiro Kamado's peaceful life is shattered after his family is slaughtered by a demon. His sister Nezuko is the sole survivor, but she has been transformed into a demon herself.",
+                "video_url": "https://drive.google.com/file/d/1l1yGSBIZ2M4WDMM_PvUB8Rk5nLrVAuJu/view",
+                "duration": 23,
+                "views": 1700000
+              },
+              {
+                "number": 2,
+                "title": "Trainer Sakonji Urokodaki",
+                "description": "Tanjiro begins his training with Sakonji Urokodaki to become a demon slayer.",
+                "video_url": "https://drive.google.com/file/d/1l1yGSBIZ2M4WDMM_PvUB8Rk5nLrVAuJu/view",
+                "duration": 23,
+                "views": 1650000
+              }
+            ]
+          },
+          {
+            "number": 2,
+            "title": "Mt. Natagumo Arc",
+            "episodes": [
+              {
+                "number": 1,
+                "title": "Muzan Kibutsuji",
+                "description": "Tanjiro encounters Muzan Kibutsuji, the demon responsible for turning Nezuko into a demon.",
+                "video_url": "https://drive.google.com/file/d/1l1yGSBIZ2M4WDMM_PvUB8Rk5nLrVAuJu/view",
+                "duration": 23,
+                "views": 1600000
+              },
+              {
+                "number": 2,
+                "title": "Mount Natagumo",
+                "description": "Tanjiro and his fellow demon slayers are sent to Mount Natagumo to investigate.",
+                "video_url": "https://drive.google.com/file/d/1l1yGSBIZ2M4WDMM_PvUB8Rk5nLrVAuJu/view",
+                "duration": 23,
+                "views": 1580000
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "title": "My Hero Academia",
+        "description": "In a world where people with superpowers (known as 'Quirks') are the norm, Izuku Midoriya has dreams of one day becoming a Hero, despite being bullied by his classmates for not having a Quirk.",
+        "image_url": "https://m.media-amazon.com/images/M/MV5BNmQzYmE2MGEtZjk4YS00YmVjLWEwZWMtODRkMjc4MTM5N2I3XkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg",
+        "genres": ["Action", "Adventure", "Comedy", "Super Power"],
+        "seasons": [
+          {
+            "number": 1,
+            "title": "Entrance Exam Arc",
+            "episodes": [
+              {
+                "number": 1,
+                "title": "Izuku Midoriya: Origin",
+                "description": "Despite being born Quirkless, Izuku Midoriya still dreams of becoming a hero. One day he meets his idol, the greatest hero All Might.",
+                "video_url": "https://drive.google.com/file/d/1l1yGSBIZ2M4WDMM_PvUB8Rk5nLrVAuJu/view",
+                "duration": 24,
+                "views": 1450000
+              },
+              {
+                "number": 2,
+                "title": "What It Takes to Be a Hero",
+                "description": "All Might reveals the truth behind his power and offers Izuku a chance to inherit his Quirk.",
+                "video_url": "https://drive.google.com/file/d/1l1yGSBIZ2M4WDMM_PvUB8Rk5nLrVAuJu/view",
+                "duration": 24,
+                "views": 1400000
+              }
+            ]
+          },
+          {
+            "number": 2,
+            "title": "U.A. Sports Festival Arc",
+            "episodes": [
+              {
+                "number": 1,
+                "title": "That's the Idea, Ochaco",
+                "description": "Class 1-A prepares for the U.A. Sports Festival, a chance for students to showcase their abilities.",
+                "video_url": "https://drive.google.com/file/d/1l1yGSBIZ2M4WDMM_PvUB8Rk5nLrVAuJu/view",
+                "duration": 24,
+                "views": 1350000
+              },
+              {
+                "number": 2,
+                "title": "Roaring Sports Festival",
+                "description": "The U.A. Sports Festival begins with the obstacle race event.",
+                "video_url": "https://drive.google.com/file/d/1l1yGSBIZ2M4WDMM_PvUB8Rk5nLrVAuJu/view",
+                "duration": 24,
+                "views": 1300000
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }

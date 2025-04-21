@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ anime.title }} - Season {{ season.number }} Episode {{ episode.number }} | Anime Zone</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/video-player.css') }}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="/" class="navbar-brand">Anime<span>Zone</span></a>
+            
+            <button class="hamburger">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="/" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/#latest" class="nav-link">Latest</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/#popular" class="nav-link">Popular</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/#genres" class="nav-link">Genres</a>
+                </li>
+            </ul>
+            
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search anime...">
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Video Player Section -->
+    <section class="section">
+        <div class="container">
+            <div class="video-container">
+                <div class="video-player-wrapper">
+                    <iframe 
+                        class="video-player" 
+                        src="{{ embed_url }}" 
+                        frameborder="0"
+                        allowfullscreen
+                        allow="autoplay; encrypted-media; picture-in-picture">
+                    </iframe>
+                </div>
+                <div id="player-loading" class="loader">
+                    <div class="loader-spinner"></div>
+                </div>
+                
+                <div class="video-info">
+                    <h1 class="video-title">
+                        {{ anime.title }} - Season {{ season.number }} Episode {{ episode.number }}
+                        {% if episode.title %} - {{ episode.title }}{% endif %}
+                    </h1>
+                    
+                    <div class="video-meta">
+                        <div class="video-meta-item">
+                            <i class="fas fa-calendar"></i>
+                            {% if episode.release_date %}
+                                {{ episode.release_date }}
+                            {% else %}
+                                Unknown
+                            {% endif %}
+                        </div>
+                        
+                        <div class="video-meta-item">
+                            <i class="fas fa-clock"></i>
+                            {% if episode.duration %}
+                                {{ episode.duration }} min
+                            {% else %}
+                                Unknown
+                            {% endif %}
+                        </div>
+                        
+                        <div class="video-meta-item">
+                            <i class="fas fa-eye"></i>
+                            {% if episode.views %}
+                                {{ episode.views }} views
+                            {% else %}
+                                0 views
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <div class="video-description">
+                        {% if episode.description %}
+                            {{ episode.description }}
+                        {% else %}
+                            No description available for this episode.
+                        {% endif %}
+                    </div>
+                    
+                    <div class="video-actions">
+                        <button class="video-action-btn download" data-url="{{ download_url }}">
+                            <i class="fas fa-download"></i> Download Episode
+                        </button>
+                        
+                        <button class="video-action-btn season-download" data-target="#seasonDownloadModal">
+                            <i class="fas fa-folder-download"></i> Download Season
+                        </button>
+                        
+                        <button class="video-action-btn">
+                            <i class="fas fa-share-alt"></i> Share
+                        </button>
+                        
+                        <button class="video-action-btn">
+                            <i class="fas fa-bookmark"></i> Add to Watchlist
+                        </button>
+                    </div>
+                    
+                    <div class="video-navigation">
+                        {% if season.episodes|selectattr('number', 'equalto', episode.number - 1)|list|length > 0 %}
+                            {% set prev_episode = season.episodes|selectattr('number', 'equalto', episode.number - 1)|first %}
+                            <button class="video-nav-btn video-nav-prev" data-href="/video/{{ anime.id }}/{{ season.number }}/{{ episode.number - 1 }}">
+                                <i class="fas fa-chevron-left"></i> Previous Episode
+                            </button>
+                        {% elif season.number > 1 %}
+                            {% set prev_season = anime.seasons|selectattr('number', 'equalto', season.number - 1)|first %}
+                            {% if prev_season and prev_season.episodes %}
+                                {% set prev_episode = prev_season.episodes|last %}
+                                <button class="video-nav-btn video-nav-prev" data-href="/video/{{ anime.id }}/{{ season.number - 1 }}/{{ prev_episode.number }}">
+                                    <i class="fas fa-chevron-left"></i> Previous Episode
+                                </button>
+                            {% else %}
+                                <button class="video-nav-btn video-nav-prev disabled">
+                                    <i class="fas fa-chevron-left"></i> Previous Episode
+                                </button>
+                            {% endif %}
+                        {% else %}
+                            <button class="video-nav-btn video-nav-prev disabled">
+                                <i class="fas fa-chevron-left"></i> Previous Episode
+                            </button>
+                        {% endif %}
+                        
+                        {% if season.episodes|selectattr('number', 'equalto', episode.number + 1)|list|length > 0 %}
+                            {% set next_episode = season.episodes|selectattr('number', 'equalto', episode.number + 1)|first %}
+                            <button class="video-nav-btn video-nav-next" data-href="/video/{{ anime.id }}/{{ season.number }}/{{ episode.number + 1 }}">
+                                Next Episode <i class="fas fa-chevron-right"></i>
+                            </button>
+                        {% elif anime.seasons|selectattr('number', 'equalto', season.number + 1)|list|length > 0 %}
+                            {% set next_season = anime.seasons|selectattr('number', 'equalto', season.number + 1)|first %}
+                            {% if next_season and next_season.episodes and next_season.episodes|length > 0 %}
+                                {% set next_episode = next_season.episodes|first %}
+                                <button class="video-nav-btn video-nav-next" data-href="/video/{{ anime.id }}/{{ season.number + 1 }}/{{ next_episode.number }}">
+                                    Next Episode <i class="fas fa-chevron-right"></i>
+                                </button>
+                            {% else %}
+                                <button class="video-nav-btn video-nav-next disabled">
+                                    Next Episode <i class="fas fa-chevron-right"></i>
+                                </button>
+                            {% endif %}
+                        {% else %}
+                            <button class="video-nav-btn video-nav-next disabled">
+                                Next Episode <i class="fas fa-chevron-right"></i>
+                            </button>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Episode Selector -->
+            <div class="episode-selector">
+                <div class="episode-selector-title">
+                    <h2>Episodes</h2>
+                    
+                    <div class="season-dropdown">
+                        <button class="season-dropdown-btn">
+                            Season {{ season.number }}
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="season-dropdown-content">
+                            {% for s in anime.seasons %}
+                                <a href="/video/{{ anime.id }}/{{ s.number }}/1">Season {{ s.number }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="episode-grid">
+                    {% for ep in season.episodes %}
+                        <div class="episode-card{% if ep.number == episode.number %} active{% endif %}" data-href="/video/{{ anime.id }}/{{ season.number }}/{{ ep.number }}">
+                            <div class="episode-card-thumbnail">
+                                <div class="episode-card-number">EP {{ ep.number }}</div>
+                                <i class="fas fa-play-circle episode-card-play"></i>
+                            </div>
+                            <div class="episode-card-info">
+                                <div class="episode-card-title">{{ ep.title or 'Episode ' + ep.number|string }}</div>
+                                <div class="episode-card-duration">
+                                    {% if ep.duration %}{{ ep.duration }} min{% else %}Unknown{% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Season Download Modal -->
+    <div id="seasonDownloadModal" class="modal season-download-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">Download Season {{ season.number }}</h3>
+                <button class="modal-close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <button class="download-all-btn">
+                    <i class="fas fa-download"></i> Download All Episodes
+                </button>
+                
+                <ul class="download-list">
+                    {% for ep in season.episodes %}
+                        <li class="download-item">
+                            <div class="download-item-info">
+                                <div class="download-item-title">Episode {{ ep.number }}{% if ep.title %} - {{ ep.title }}{% endif %}</div>
+                                <div class="download-item-meta">
+                                    {% if ep.duration %}{{ ep.duration }} min{% else %}Unknown{% endif %}
+                                </div>
+                            </div>
+                            <button class="download-item-btn" data-url="{% if '/file/d/' in ep.video_url %}https://drive.google.com/uc?export=download&id={{ ep.video_url.split('/file/d/')[1].split('/')[0] }}{% else %}{{ ep.video_url }}{% endif %}">
+                                <i class="fas fa-download"></i>
+                            </button>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 class="footer-title">About Anime Zone</h3>
+                    <p>Anime Zone is a modern streaming platform dedicated to bringing you the best anime content. Watch your favorite shows anytime, anywhere.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="/">Home</a></li>
+                        <li class="footer-link"><a href="/#latest">Latest Episodes</a></li>
+                        <li class="footer-link"><a href="/#popular">Popular Anime</a></li>
+                        <li class="footer-link"><a href="/#genres">Genres</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">Top Categories</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#">Action</a></li>
+                        <li class="footer-link"><a href="#">Adventure</a></li>
+                        <li class="footer-link"><a href="#">Romance</a></li>
+                        <li class="footer-link"><a href="#">Comedy</a></li>
+                        <li class="footer-link"><a href="#">Fantasy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">Connect With Us</h3>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Anime Zone. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/player.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/search.js') }}"></script>
+    
+    <style>
+        /* Additional styles for the footer social links */
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--text-primary);
+            font-size: 1.25rem;
+            transition: all 0.2s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--accent-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* Button styles */
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--text-primary);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</body>
+</html>

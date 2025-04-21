@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anime Zone - Streaming Platform</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎬</text></svg>">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container navbar-container">
+            <a href="/" class="navbar-brand">Anime<span>Zone</span></a>
+            
+            <button class="hamburger">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="/" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#latest" class="nav-link">Latest</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#popular" class="nav-link">Popular</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#genres" class="nav-link">Genres</a>
+                </li>
+            </ul>
+            
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search anime...">
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Watch Anime Anytime, Anywhere</h1>
+                <p class="hero-subtitle">Stream your favorite anime series and movies in high quality</p>
+                <a href="#featured" class="btn btn-primary">Explore Now</a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Featured Anime Section -->
+    <section id="featured" class="section">
+        <div class="container">
+            <h2 class="section-title">Featured Anime</h2>
+            
+            <div class="anime-grid">
+                <!-- Anime cards will be loaded here dynamically -->
+                <div class="loader">
+                    <div class="loader-spinner"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Latest Episodes Section -->
+    <section id="latest" class="section">
+        <div class="container">
+            <h2 class="section-title">Latest Episodes</h2>
+            
+            <div class="anime-grid">
+                <!-- Latest episodes will be loaded here dynamically -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- Popular Anime Section -->
+    <section id="popular" class="section">
+        <div class="container">
+            <h2 class="section-title">Popular Anime</h2>
+            
+            <div class="anime-grid">
+                <!-- Popular anime will be loaded here dynamically -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- Anime News Section -->
+    <section id="news" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Anime News</h2>
+                <a href="https://www.animenewsnetwork.com/" target="_blank" class="section-view-all">More News</a>
+            </div>
+            <div class="news-grid">
+                {% if news %}
+                    {% for item in news %}
+                        <div class="news-item">
+                            <div class="news-item-content">
+                                <h3 class="news-item-title">{{ item.title }}</h3>
+                                <div class="news-item-date">{{ item.date }}</div>
+                                <p class="news-item-description">{{ item.description[:100] }}{% if item.description|length > 100 %}...{% endif %}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="news-empty">
+                        <i class="fas fa-newspaper"></i>
+                        <p>No anime news available at the moment.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    
+    <!-- Upcoming Seasons Section -->
+    <section id="upcoming" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Upcoming Seasons</h2>
+                <a href="https://www.livechart.me/" target="_blank" class="section-view-all">View More</a>
+            </div>
+            <div class="upcoming-grid">
+                {% if upcoming %}
+                    {% for item in upcoming %}
+                        <div class="upcoming-item">
+                            <div class="upcoming-item-content">
+                                <h3 class="upcoming-item-title">{{ item.title }}</h3>
+                                {% if item.season %}
+                                    <div class="upcoming-item-season">{{ item.season }}</div>
+                                {% endif %}
+                                {% if item.description %}
+                                    <p class="upcoming-item-description">{{ item.description[:100] }}{% if item.description|length > 100 %}...{% endif %}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="upcoming-empty">
+                        <i class="fas fa-calendar-alt"></i>
+                        <p>No upcoming seasons information available.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+    
+    <!-- Genres Section -->
+    <section id="genres" class="section">
+        <div class="container">
+            <h2 class="section-title">Explore by Genres</h2>
+            
+            <div class="genre-grid">
+                <a href="#" class="genre-card">
+                    <div class="genre-card-icon">
+                        <i class="fas fa-fist-raised"></i>
+                    </div>
+                    <h3 class="genre-card-title">Action</h3>
+                </a>
+                
+                <a href="#" class="genre-card">
+                    <div class="genre-card-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3 class="genre-card-title">Romance</h3>
+                </a>
+                
+                <a href="#" class="genre-card">
+                    <div class="genre-card-icon">
+                        <i class="fas fa-ghost"></i>
+                    </div>
+                    <h3 class="genre-card-title">Horror</h3>
+                </a>
+                
+                <a href="#" class="genre-card">
+                    <div class="genre-card-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3 class="genre-card-title">Sci-Fi</h3>
+                </a>
+                
+                <a href="#" class="genre-card">
+                    <div class="genre-card-icon">
+                        <i class="fas fa-dragon"></i>
+                    </div>
+                    <h3 class="genre-card-title">Fantasy</h3>
+                </a>
+                
+                <a href="#" class="genre-card">
+                    <div class="genre-card-icon">
+                        <i class="fas fa-theater-masks"></i>
+                    </div>
+                    <h3 class="genre-card-title">Drama</h3>
+                </a>
+                
+                <a href="#" class="genre-card">
+                    <div class="genre-card-icon">
+                        <i class="fas fa-laugh-squint"></i>
+                    </div>
+                    <h3 class="genre-card-title">Comedy</h3>
+                </a>
+                
+                <a href="#" class="genre-card">
+                    <div class="genre-card-icon">
+                        <i class="fas fa-school"></i>
+                    </div>
+                    <h3 class="genre-card-title">School</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 class="footer-title">About Anime Zone</h3>
+                    <p>Anime Zone is a modern streaming platform dedicated to bringing you the best anime content. Watch your favorite shows anytime, anywhere.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="/">Home</a></li>
+                        <li class="footer-link"><a href="#latest">Latest Episodes</a></li>
+                        <li class="footer-link"><a href="#popular">Popular Anime</a></li>
+                        <li class="footer-link"><a href="#news">Anime News</a></li>
+                        <li class="footer-link"><a href="#upcoming">Upcoming Seasons</a></li>
+                        <li class="footer-link"><a href="#genres">Genres</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">Top Categories</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link"><a href="#">Action</a></li>
+                        <li class="footer-link"><a href="#">Adventure</a></li>
+                        <li class="footer-link"><a href="#">Romance</a></li>
+                        <li class="footer-link"><a href="#">Comedy</a></li>
+                        <li class="footer-link"><a href="#">Fantasy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3 class="footer-title">Connect With Us</h3>
+                    <div class="footer-social">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-discord"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Anime Zone. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/search.js') }}"></script>
+    
+    <style>
+        /* Additional styles for genre grid */
+        .genre-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .genre-card {
+            background-color: var(--background-card);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+        
+        .genre-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            background-color: var(--primary-color);
+        }
+        
+        .genre-card-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+        
+        .genre-card:hover .genre-card-icon {
+            color: white;
+        }
+        
+        .genre-card-title {
+            font-size: 1rem;
+            margin: 0;
+        }
+        
+        /* Social links in footer */
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--text-primary);
+            font-size: 1.25rem;
+            transition: all 0.2s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--accent-color);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        @media (max-width: 768px) {
+            .genre-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+            
+            .genre-card {
+                padding: 1rem;
+            }
+            
+            .genre-card-icon {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</body>
+</html>

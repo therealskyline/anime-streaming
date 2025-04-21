@@ -1,0 +1,505 @@
+/* Video Player Styles */
+
+.video-container {
+    background-color: var(--background-card);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    margin-bottom: 2rem;
+    animation: videoContainerFadeIn 0.8s ease-out forwards;
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  
+  @keyframes videoContainerFadeIn {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .video-player-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    background-color: #000;
+    overflow: hidden;
+    border-radius: 8px 8px 0 0;
+  }
+  
+  .video-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    transition: opacity 0.5s ease;
+  }
+  
+  /* Controls Container */
+  .video-controls-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 15px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 20;
+  }
+  
+  .video-player-wrapper:hover .video-controls-container {
+    opacity: 1;
+  }
+  
+  /* Fullscreen & Download Buttons */
+  .video-control-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 8px;
+    margin: 0 5px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+  }
+  
+  .video-control-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .video-fullscreen-btn {
+    margin-left: auto;
+  }
+  
+  .video-error-message {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    z-index: 10;
+    animation: fadeIn 0.5s ease forwards;
+  }
+  
+  .video-error-message i {
+    font-size: 3rem;
+    color: #f44336;
+    margin-bottom: 1rem;
+  }
+  
+  .video-error-message h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .video-error-message p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  
+  .retry-button {
+    padding: 0.5rem 1.5rem;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+  }
+  
+  .retry-button:hover {
+    background-color: #e91e63;
+    transform: translateY(-2px);
+  }
+  
+  .video-info {
+    padding: 1.5rem;
+  }
+  
+  .video-title {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .video-meta {
+    display: flex;
+    align-items: center;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+  }
+  
+  .video-meta-item {
+    margin-right: 1.5rem;
+    display: flex;
+    align-items: center;
+  }
+  
+  .video-meta-item i {
+    margin-right: 0.5rem;
+  }
+  
+  .video-description {
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+  }
+  
+  .video-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .video-action-btn {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1.25rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 4px;
+    color: var(--text-primary);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .video-action-btn i {
+    margin-right: 0.5rem;
+  }
+  
+  .video-action-btn:hover {
+    background-color: var(--primary-color);
+  }
+  
+  .video-action-btn.download {
+    background-color: var(--accent-color);
+    color: white;
+  }
+  
+  .video-action-btn.download:hover {
+    background-color: #e91e63;
+  }
+  
+  .video-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1rem;
+  }
+  
+  .video-nav-btn {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 4px;
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .video-nav-btn:hover {
+    background-color: var(--primary-color);
+  }
+  
+  .video-nav-btn.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  .video-nav-btn.disabled:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .video-nav-prev i {
+    margin-right: 0.5rem;
+  }
+  
+  .video-nav-next i {
+    margin-left: 0.5rem;
+  }
+  
+  /* Episode Selector */
+  .episode-selector {
+    margin-top: 2rem;
+  }
+  
+  .episode-selector-title {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .season-dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .season-dropdown-btn {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: none;
+    border-radius: 4px;
+    color: var(--text-primary);
+    cursor: pointer;
+  }
+  
+  .season-dropdown-btn i {
+    margin-left: 0.5rem;
+  }
+  
+  .season-dropdown-content {
+    display: none;
+    position: absolute;
+    right: 0;
+    min-width: 160px;
+    z-index: 1;
+    background-color: var(--background-card);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  
+  .season-dropdown-content a {
+    color: var(--text-primary);
+    padding: 0.75rem 1rem;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.2s ease;
+  }
+  
+  .season-dropdown-content a:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  
+  .season-dropdown:hover .season-dropdown-content {
+    display: block;
+  }
+  
+  .episode-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+  
+  .episode-card {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+  
+  .episode-card:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    transform: translateY(-3px);
+  }
+  
+  .episode-card.active {
+    border: 2px solid var(--accent-color);
+  }
+  
+  .episode-card-thumbnail {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  
+  .episode-card-number {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+  }
+  
+  .episode-card-play {
+    color: white;
+    font-size: 2rem;
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+  }
+  
+  .episode-card:hover .episode-card-play {
+    opacity: 1;
+  }
+  
+  .episode-card-info {
+    padding: 0.75rem;
+  }
+  
+  .episode-card-title {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .episode-card-duration {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+  }
+  
+  /* Season Download Modal */
+  .season-download-modal .modal-body {
+    max-height: 50vh;
+    overflow-y: auto;
+  }
+  
+  .download-list {
+    list-style: none;
+  }
+  
+  .download-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-color);
+  }
+  
+  .download-item:last-child {
+    border-bottom: none;
+  }
+  
+  .download-item-info {
+    flex-grow: 1;
+  }
+  
+  .download-item-title {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+  }
+  
+  .download-item-meta {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+  }
+  
+  .download-item-btn {
+    padding: 0.4rem 0.75rem;
+    background-color: var(--accent-color);
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-left: 1rem;
+  }
+  
+  .download-item-btn:hover {
+    background-color: #e91e63;
+  }
+  
+  .download-all-btn {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--accent-color);
+    border: none;
+    border-radius: 4px;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-bottom: 1rem;
+  }
+  
+  .download-all-btn:hover {
+    background-color: #e91e63;
+  }
+  
+  /* Responsive Video Player */
+  @media (max-width: 768px) {
+    .video-title {
+      font-size: 1.5rem;
+    }
+    
+    .video-meta {
+      flex-wrap: wrap;
+    }
+    
+    .video-meta-item {
+      margin-right: 1rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .video-actions {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .video-action-btn {
+      width: 100%;
+      justify-content: center;
+    }
+    
+    .episode-grid {
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .video-info {
+      padding: 1rem;
+    }
+    
+    .video-title {
+      font-size: 1.25rem;
+    }
+    
+    .video-nav-btn {
+      padding: 0.4rem 0.75rem;
+      font-size: 0.9rem;
+    }
+    
+    .episode-grid {
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    }
+    
+    .episode-card-info {
+      padding: 0.5rem;
+    }
+    
+    .episode-card-title {
+      font-size: 0.9rem;
+    }
+  }
+  
